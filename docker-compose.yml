@@ -1,0 +1,31 @@
+version: '3'
+services:
+  db:
+    image: mysql:8.0
+    volumes:
+      - db-store:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: rails_development
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: root
+      TZ: Asia/Tokyo
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.development
+    command: sh -c "rm -f tmp/pids/server.pid && ./bin/dev"
+    stdin_open: true
+    volumes:
+      - .:/app
+      - node-modules-store:/app/node_modules
+      - vendor-store:/app/vendor
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+ 
+volumes:
+  db-store:
+  node-modules-store:
+  vendor-store:
