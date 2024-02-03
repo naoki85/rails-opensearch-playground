@@ -1,0 +1,17 @@
+<%= form_with(url: document ? document_path(document['_id']) : documents_path, method: document ? :put : :post) do |form| %>
+  <div>
+    <div>
+      <%= form.label :first_name, 'First Name' %>
+      <%= form.text_field :first_name, value: document ? document['_source']['first_name'] : '', class: "py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600", style: 'border: solid black' %>
+    </div>
+    <div>
+      <%= form.label :last_name, 'Last Name' %>
+      <%= form.text_field :last_name, value: document ? document['_source']['last_name'] : '', class: "py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600", style: 'border: solid black' %>
+    </div>
+    <div>
+      <%= form.label :grade, 'Grade' %>
+      <%= form.number_field :grade, value: document ? document['_source']['grade'] : 0, class: "py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600", style: 'border: solid black' %>
+    </div>
+    <%= form.submit class: "py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" %>
+  </div>
+<% end %>

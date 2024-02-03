@@ -1,0 +1,35 @@
+<p style="color: green"><%= notice %></p>
+
+<h1 class="text-4xl dark:text-white">Documents</h1>
+
+<div id="documents" class="my-5">
+  <table class="text-left">
+    <thead>
+      <% @documents[0].keys.each do |key| %>
+        <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+          <%= key %>
+        </th>
+      <% end %>
+      <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+        Actions
+      </th>
+    </thead>
+    <tbody>
+      <% @documents.each do |document| %>
+        <tr>
+          <% document.keys.each do |key| %>
+            <td class="p-4 border-b border-blue-gray-50">
+              <%= document[key] %>
+            </td>
+          <% end %>
+          <td class="p-4 border-b border-blue-gray-50">
+            <%= link_to "Edit", edit_document_path(document["_id"]), class: 'py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-orange-600 text-white hover:bg-orange-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600' %> | 
+            <%= button_to "Destroy", document_path(document["_id"]), method: :delete, class: 'py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-red-600 text-white hover:bg-red-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= link_to "New document", new_document_path, { class: "py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" } %>
